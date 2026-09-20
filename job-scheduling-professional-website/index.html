@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Scheduling with Deadlines | DAA Visualizer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+  <a class="brand" href="#home">
+    <span class="brand-mark">JS</span>
+    <span>Job Scheduling<span class="brand-dot">.</span></span>
+  </a>
+
+  <nav>
+    <a href="#overview">Overview</a>
+    <a href="#workflow">Workflow</a>
+    <a href="#visualizer">Visualizer</a>
+    <a href="#complexity">Complexity</a>
+    <a href="#applications">Applications</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="eyebrow">DESIGN & ANALYSIS OF ALGORITHMS</div>
+      <h1>Job Scheduling<br><span>with Deadlines</span></h1>
+      <p>
+        Explore how a Greedy strategy selects jobs with deadlines and profits
+        to build a feasible schedule while maximizing total profit.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#visualizer">Launch Visualizer</a>
+        <a class="btn btn-ghost" href="#overview">Explore Algorithm</a>
+      </div>
+
+      <div class="hero-stats">
+        <div><strong>Greedy</strong><small>Strategy</small></div>
+        <div><strong>1 Unit</strong><small>Job Duration</small></div>
+        <div><strong>Profit</strong><small>Optimization Goal</small></div>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="mini-header">
+        <span>LIVE SCHEDULE</span>
+        <span class="status"><i></i> Interactive</span>
+      </div>
+
+      <div class="mini-chart">
+        <div class="mini-job mini-a">J3<br><small>27</small></div>
+        <div class="mini-job mini-b">J1<br><small>100</small></div>
+        <div class="mini-job mini-c">J5<br><small>15</small></div>
+      </div>
+
+      <div class="mini-labels">
+        <span>Slot 1</span>
+        <span>Slot 2</span>
+        <span>Slot 3</span>
+      </div>
+
+      <div class="mini-profit">
+        <span>Maximum Profit</span>
+        <strong>142</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="overview">
+    <div class="section-heading">
+      <span class="section-number">01</span>
+      <div>
+        <div class="eyebrow">OVERVIEW</div>
+        <h2>What is Job Scheduling?</h2>
+      </div>
+    </div>
+
+    <div class="overview-grid">
+      <div class="overview-text">
+        <p class="lead">
+          Job Scheduling with Deadlines is a Greedy algorithm that schedules
+          jobs to maximize total profit while respecting their deadlines.
+        </p>
+        <p>
+          Each job has a job name, a deadline and a profit. Every job takes
+          one unit of time. A job earns its profit only when it is completed
+          on or before its deadline.
+        </p>
+      </div>
+
+      <div class="definition-cards">
+        <article class="info-card">
+          <span class="icon">01</span>
+          <h3>Job</h3>
+          <p>A task that needs exactly one unit of time.</p>
+        </article>
+        <article class="info-card">
+          <span class="icon">02</span>
+          <h3>Deadline</h3>
+          <p>The latest time slot in which the job can be completed.</p>
+        </article>
+        <article class="info-card">
+          <span class="icon">03</span>
+          <h3>Profit</h3>
+          <p>The reward earned when the job is completed on time.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft" id="workflow">
+    <div class="section-heading centered">
+      <div>
+        <div class="eyebrow">HOW IT WORKS</div>
+        <h2>Greedy Scheduling Workflow</h2>
+        <p>Three simple decisions drive the algorithm.</p>
+      </div>
+    </div>
+
+    <div class="workflow">
+      <div class="workflow-card">
+        <span>01</span>
+        <div class="workflow-line"></div>
+        <h3>Sort by Profit</h3>
+        <p>Arrange jobs from highest profit to lowest profit.</p>
+      </div>
+      <div class="workflow-card">
+        <span>02</span>
+        <div class="workflow-line"></div>
+        <h3>Find a Slot</h3>
+        <p>Search backward from the job's deadline for a free slot.</p>
+      </div>
+      <div class="workflow-card">
+        <span>03</span>
+        <div class="workflow-line"></div>
+        <h3>Schedule or Skip</h3>
+        <p>Place the job if a slot exists; otherwise skip it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section example-section">
+    <div class="section-heading">
+      <span class="section-number">02</span>
+      <div>
+        <div class="eyebrow">WORKED EXAMPLE</div>
+        <h2>See the Algorithm Before Running It</h2>
+      </div>
+    </div>
+
+    <div class="example-grid">
+      <div class="table-card">
+        <div class="card-title">
+          <h3>Input Jobs</h3>
+          <span>5 Jobs</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Job</th><th>Deadline</th><th>Profit</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>J1</td><td>2</td><td>100</td></tr>
+              <tr><td>J2</td><td>1</td><td>19</td></tr>
+              <tr><td>J3</td><td>2</td><td>27</td></tr>
+              <tr><td>J4</td><td>1</td><td>25</td></tr>
+              <tr><td>J5</td><td>3</td><td>15</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="example-result">
+        <span class="result-label">SORTED BY PROFIT</span>
+        <div class="sequence">
+          <span>J1</span><b>→</b><span>J3</span><b>→</b><span>J4</span><b>→</b><span>J2</span><b>→</b><span>J5</span>
+        </div>
+
+        <div class="result-schedule">
+          <div><small>SLOT 1</small><strong>J3</strong><span>Profit 27</span></div>
+          <div><small>SLOT 2</small><strong>J1</strong><span>Profit 100</span></div>
+          <div><small>SLOT 3</small><strong>J5</strong><span>Profit 15</span></div>
+        </div>
+
+        <div class="result-total">
+          <span>Maximum Total Profit</span>
+          <strong>142</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section visualizer-section" id="visualizer">
+    <div class="section-heading">
+      <span class="section-number">03</span>
+      <div>
+        <div class="eyebrow">INTERACTIVE LAB</div>
+        <h2>Job Scheduling Visualizer</h2>
+        <p>Add your own jobs and watch the Greedy algorithm build the schedule.</p>
+      </div>
+    </div>
+
+    <div class="visualizer-grid">
+      <div class="control-card">
+        <div class="card-title">
+          <div>
+            <h3>Job Input</h3>
+            <p>Each job requires one unit of time.</p>
+          </div>
+          <span class="live-pill">LIVE</span>
+        </div>
+
+        <div class="form-grid">
+          <label>
+            Job Name
+            <input id="jobName" type="text" placeholder="e.g. J6">
+          </label>
+          <label>
+            Deadline
+            <input id="deadline" type="number" min="1" placeholder="e.g. 3">
+          </label>
+          <label>
+            Profit
+            <input id="profit" type="number" min="0" placeholder="e.g. 60">
+          </label>
+        </div>
+
+        <div class="button-row">
+          <button class="btn btn-primary" id="addBtn">Add Job</button>
+          <button class="btn btn-light" id="exampleBtn">Load Example</button>
+          <button class="btn btn-light" id="resetBtn">Reset</button>
+        </div>
+
+        <div class="input-note">
+          Tip: Add multiple jobs, then press <b>Run Algorithm</b>.
+        </div>
+      </div>
+
+      <div class="summary-card">
+        <div class="summary-item">
+          <span>Jobs</span>
+          <strong id="jobCount">0</strong>
+        </div>
+        <div class="summary-item">
+          <span>Scheduled</span>
+          <strong id="scheduledCount">0</strong>
+        </div>
+        <div class="summary-item highlight">
+          <span>Total Profit</span>
+          <strong id="totalProfit">0</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="visual-card">
+      <div class="visual-card-header">
+        <div>
+          <h3>Algorithm Execution</h3>
+          <p id="executionText">Waiting for input...</p>
+        </div>
+        <button class="btn btn-run" id="runBtn">▶ Run Algorithm</button>
+      </div>
+
+      <div class="algorithm-steps">
+        <div class="step active" id="step1"><span>1</span> Sort Jobs</div>
+        <div class="step" id="step2"><span>2</span> Find Slots</div>
+        <div class="step" id="step3"><span>3</span> Final Schedule</div>
+      </div>
+
+      <div class="jobs-area">
+        <div class="area-heading">
+          <h4>Jobs</h4>
+          <div class="legend">
+            <span><i class="dot selected-dot"></i>Scheduled</span>
+            <span><i class="dot rejected-dot"></i>Skipped</span>
+          </div>
+        </div>
+        <div class="job-grid" id="jobList"></div>
+      </div>
+
+      <div class="timeline-area">
+        <div class="area-heading">
+          <h4>Time Slot Visualization</h4>
+          <span class="slot-note">Latest available slot is selected</span>
+        </div>
+        <div class="timeline" id="timeline"></div>
+      </div>
+
+      <div class="execution-log" id="executionLog">
+        <div class="log-title">Execution Log</div>
+        <p>Add jobs and run the algorithm to see each scheduling decision.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="complexity">
+    <div class="section-heading">
+      <span class="section-number">04</span>
+      <div>
+        <div class="eyebrow">ANALYSIS</div>
+        <h2>Complexity</h2>
+      </div>
+    </div>
+
+    <div class="complexity-grid">
+      <article class="complexity-card">
+        <span class="complexity-icon">T</span>
+        <h3>Time Complexity</h3>
+        <strong>O(n log n + n × d)</strong>
+        <p>
+          Jobs are sorted by profit and then each job may search
+          backward through available slots.
+        </p>
+      </article>
+
+      <article class="complexity-card">
+        <span class="complexity-icon">S</span>
+        <h3>Space Complexity</h3>
+        <strong>O(d)</strong>
+        <p>
+          A time-slot structure is used to keep track of scheduled jobs.
+        </p>
+      </article>
+
+      <article class="complexity-card">
+        <span class="complexity-icon">G</span>
+        <h3>Greedy Choice</h3>
+        <strong>Highest Profit First</strong>
+        <p>
+          The algorithm considers jobs in decreasing order of profit.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section soft" id="applications">
+    <div class="section-heading centered">
+      <div>
+        <div class="eyebrow">REAL-WORLD CONTEXT</div>
+        <h2>Applications</h2>
+        <p>Scheduling concepts appear in many planning problems.</p>
+      </div>
+    </div>
+
+    <div class="application-grid">
+      <article><span>01</span><h3>Task Scheduling</h3><p>Prioritizing tasks that must be completed within available time.</p></article>
+      <article><span>02</span><h3>Project Planning</h3><p>Choosing activities under deadlines and limited resources.</p></article>
+      <article><span>03</span><h3>Production Planning</h3><p>Scheduling production tasks according to completion deadlines.</p></article>
+      <article><span>04</span><h3>Resource Allocation</h3><p>Assigning limited time slots to activities based on priority.</p></article>
+    </div>
+  </section>
+
+  <section class="section conclusion">
+    <div class="conclusion-box">
+      <div class="eyebrow">KEY TAKEAWAY</div>
+      <h2>Make the highest-profit feasible choice first.</h2>
+      <p>
+        By sorting jobs by profit and placing each selected job in the latest
+        available slot before its deadline, the standard Job Scheduling
+        problem can be visualized as a clear sequence of Greedy decisions.
+      </p>
+      <a href="#visualizer" class="btn btn-primary">Try It Again</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div>
+    <strong>Job Scheduling with Deadlines</strong>
+    <span>Design & Analysis of Algorithms</span>
+  </div>
+  <span>Interactive Learning Website</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
